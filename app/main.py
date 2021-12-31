@@ -8,6 +8,15 @@ application entry point:
 
 # Author: Viraj Vaitha
 
+## TO DO: Add unit tests and more try/except statements
+##      : Optimise KMeans application to run faster?
+##      : Download file on click
+##      : Responsive? can't even tell it is downloading, loading bar, new page or spinner atleast!
+##      : Incorporate mlflow to your solution to store an artifact demonstrating performance (time) for each function
+##      : Add an simple architecture diagram to demonstrate libaries,softwares and cloud services used for the solution.
+##      : GIF instead of phone on the right showcasing application
+##      : Create docker image
+
 # Import Libaries
 from fastapi import FastAPI, Request, File, UploadFile, Depends, Response
 from fastapi.responses import HTMLResponse
