@@ -11,6 +11,7 @@ import os
 
 from fastapi import APIRouter
 from fastapi import Request, File, Form,UploadFile
+from fastapi.responses import FileResponse
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -72,5 +73,12 @@ async def post_form(request: Request,k_cluster: int = Form(...), file: UploadFil
 
     filename = file.filename
     upload_blob(filename,"public",filepath)
+    # return FileResponse(path=filepath, filename=filename, media_type='image/jpg')
+    return FileResponse(path=filepath, filename=filename, media_type='image/jpg')
     return templates.TemplateResponse(r"clustering_examples.html",
                                      {'request': request})
+
+# @router.post('/submit', response_class=HTMLResponse)
+# async def post_form(request: Request,k_cluster: int = Form(...), file: UploadFile = File(...)):
+    
+#     return FileResponse(path=filepath, filename=filename, media_type='image/jpg')
