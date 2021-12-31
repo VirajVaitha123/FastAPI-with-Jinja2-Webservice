@@ -7,9 +7,10 @@ from internal.data_processing.img_utils import bytes_to_numpy_array, resolution_
 from internal.data_processing.azure_blob_wrapper import upload_blob
 from internal.machine_learning.image_segmentation import cluster_image
 import matplotlib.pyplot as plt
+import os
 
 from fastapi import APIRouter
-from fastapi import FastAPI, Request, File, Form,UploadFile, Depends, Response
+from fastapi import Request, File, Form,UploadFile
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -58,16 +59,16 @@ async def post_form(request: Request,k_cluster: int = Form(...), file: UploadFil
     fig = plt.figure(figsize=fig_size)
     segmented_img = cluster_image(k_cluster,img_array)
 
-    
+    plt.subplots_adjust(0,0,1,1)
+    plt.axis('off')
     plt.imshow(segmented_img,interpolation='nearest')
     # plt.title("new image")
 
-    plt.subplots_adjust(0,0,1,1)
-    plt.axis('off')
-    filepath = r"C:\Users\viraj.vaitha\FastAPI_Create_your_own_API\figures\segmented_image_{0}.jpg".format(k_cluster)
-    plt.savefig(filepath,  dpi=200)
+  
+    filepath = r"C:\\Users\\Viraj\\Repos\\portfolio\\app\\figures\\segmented_image_{0}.jpg".format(k_cluster)
+    plt.savefig(filepath,  dpi=100)
 
-    seg_image = Image.open(filepath)
+    # seg_image = Image.open(filepath)
 
     filename = file.filename
     upload_blob(filename,"public",filepath)

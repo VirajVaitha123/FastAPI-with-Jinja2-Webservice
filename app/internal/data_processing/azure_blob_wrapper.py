@@ -6,10 +6,15 @@ Functions to help work with Azure Blob Storage
 # Import Libaries
 from typing import BinaryIO
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient, __version__
-from internal.responses.responses_json import response_json
+from ..responses.reponses_json import response_json
+from dotenv import load_dotenv
+import os
+
+# Loading environment variables
+load_dotenv()
+connect_str = os.getenv('AZURE_CONNECTION_STRING')
 
 # Parameters
-connect_str = "DefaultEndpointsProtocol=https;AccountName=devmediastore;AccountKey=Au+V8aU7PmFvs7cpcycMzbHNdZIpl3DyrM11fPBteHm0HovrTNjI9qKmA8/X9JhE2vPWY6621Gz0PuEAufwh5A==;EndpointSuffix=core.windows.net"
 blob_service_client = BlobServiceClient.from_connection_string(connect_str)
 
 # Upload contents to blob storage
