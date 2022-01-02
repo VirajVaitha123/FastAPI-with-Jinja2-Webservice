@@ -10,7 +10,6 @@ application entry point:
 
 ## TO DO: Add unit tests and more try/except statements
 ##      : Optimise KMeans application to run faster?
-##      : Download file on click
 ##      : Responsive? can't even tell it is downloading, loading bar, new page or spinner atleast!
 ##      : Incorporate mlflow to your solution to store an artifact demonstrating performance (time) for each function
 ##      : Add an simple architecture diagram to demonstrate libaries,softwares and cloud services used for the solution.
@@ -34,7 +33,7 @@ app = FastAPI()
 app.include_router(clustering_examples.router)
 
 
-# HTML Rendering and static files
+# HTML Rendering and static filesfa
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name = "static")
 
