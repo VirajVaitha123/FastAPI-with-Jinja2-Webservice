@@ -7,6 +7,8 @@ from internal.data_processing.img_utils import bytes_to_numpy_array, resolution_
 from internal.data_processing.azure_blob_wrapper import upload_blob
 from internal.machine_learning.image_segmentation import cluster_image
 import matplotlib.pyplot as plt
+from skimage import data, color
+from skimage.transform import rescale, resize, downscale_local_mean
 import os
 
 from fastapi import APIRouter
@@ -50,9 +52,16 @@ async def get_form(request: Request):
 async def post_form(request: Request,k_cluster: int = Form(...), file: UploadFile = File(...)):
     # Read uploaded file as bytes
     data = await file.read()
+
    
     # Convert Bytes to numpy (great to work with images and processing for machine learning)
     img_array = bytes_to_numpy_array(data, scale = True)
+    
+    if img_array.shape[0] > 3500:
+        print("Large Image - Scale down to reduce processing time")
+        img_array = resize(img_array, (img_array.shape[0] // 5, img_array .shape[1] // 5),
+                       anti_aliasing=True)
+
     fig_size = resolution_matcher(img_array,dpi=50)
 
     
@@ -66,7 +75,7 @@ async def post_form(request: Request,k_cluster: int = Form(...), file: UploadFil
     # plt.title("new image")
 
   
-    filepath = r"C:\\Users\\Viraj\\Repos\\portfolio\\app\\figures\\segmented_image_{0}.jpg".format(k_cluster)
+    filepath = r"C:\Users\viraj.vaitha\repos\portfolio\figures\segmented_image_{0}.jpg".format(k_cluster)
     plt.savefig(filepath,  dpi=100)
 
     # seg_image = Image.open(filepath)
