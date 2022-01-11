@@ -3,9 +3,9 @@ routing code for clustering_examples usecase in our FastAPI webservice.
 
 Storing seperate GET/POST request in routers to better organise and prevent clutter in the main.py file.
 """
-from internal.data_processing.img_utils import bytes_to_numpy_array, resolution_matcher
-from internal.data_processing.azure_blob_wrapper import upload_blob
-from internal.machine_learning.image_segmentation import cluster_image
+from helpers.data_processing.img_utils import bytes_to_numpy_array, resolution_matcher
+from helpers.data_processing.azure_blob_wrapper import upload_blob
+from helpers.machine_learning.image_segmentation import cluster_image
 import matplotlib.pyplot as plt
 from skimage import data, color
 from skimage.transform import rescale, resize, downscale_local_mean
