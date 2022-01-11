@@ -21,20 +21,25 @@ In addition the Machine Learning model can be downloaded from AzureML/mlflow.
 From my research the ideal structure for a FastAPI application can be seen below:
 ```
 📦app
- ┣ 📂detection ⭐
- ┃ ┣ 📂routers
- ┃ ┃ ┣ 📜clustering_examples.py   #API routes - keeps main.py clean
- ┃ ┣ 📂helpers
- ┃ ┃ ┣ 📜data_processing.py   #API routes - keeps main.py clean
- ┃ ┃ ┣ 📜machine_learning.py
- ┃ ┃ ┣ 📜responses.py
- ┃ ┣ 📂static
- ┃ ┃ ┣ 📂home_page
- ┃ ┃ ┃  ┣ 📂assets
- ┃ ┃ ┃  ┣ 📂css
- ┃ ┃ ┃  ┣ 📂js
- ┃ ┣ 📂templates
- ┃ ┃ ┣ clustering_examples.html
+ ┣ main.py ⭐
+ ┣ 📂routers 
+ ┃ ┣ 📜clustering_examples.py   #API routes - keeps main.py clean
+ ┣ 📂helpers
+ ┃  ┣ 📂 data_processing.py   #API routes - keeps main.py clean
+ ┃  ┃  ┣  📜azure_blob_wrapper.py
+ ┃  ┃  ┣  📜img_utils.py
+ ┃  ┃  ┗  📜schemas.py
+ ┃  ┣ 📂 machine_learning.py
+ ┃  ┃  ┗ 📜image_segmentation.py
+ ┃  ┣ 📂responses.py
+ ┃  ┃  ┗ 📜responses_json.py
+ ┣ 📂static
+ ┃ ┣ 📂home_page
+ ┃ ┃  ┣ 📂assets
+ ┃ ┃  ┣ 📂css
+ ┃ ┃  ┗ 📂js
+ ┗ 📂templates
+  ┗ 📜clustering_examples.html
 ```
 Key Points:
 - Main file imports routers from routers dir
