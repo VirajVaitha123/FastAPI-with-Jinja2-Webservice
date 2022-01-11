@@ -5,6 +5,11 @@ Webservice created using FastAPI (with Jinga2 Templates). The main purpose of th
 
 This application uses KMeans clustering on image data and propogates the centroid RGB value to all other pixels that are within the same cluster.
 
+<br>
+
+![gif-summary](https://github.com/VirajVaitha123/portfolio/blob/app/images_gifs/Animation.gif)
+<br>
+
 ### Other benefits
 
 This project is an opportunity to experiment with a full stack project. We have the opportunity to download static files for the frontend (HTML, CSS and Javascript and customized to our liking) and backend (FastAPI). In addition, using Azure (Azure Blob Storage, Secrets, Azure App service ect..) and packaging an application that be packaged with Docker/Kubernetes. 
