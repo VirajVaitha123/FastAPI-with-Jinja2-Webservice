@@ -14,6 +14,7 @@ In addition the Machine Learning model can be downloaded from AzureML/mlflow.
 ### Folder Structure
 
 From my research the ideal structure for a FastAPI application can be seen below:
+```
 📦app
  ┣ 📂detection ⭐
  ┃ ┣ 📂routers
@@ -29,7 +30,7 @@ From my research the ideal structure for a FastAPI application can be seen below
  ┃ ┃ ┃  ┣ 📂js
  ┃ ┣ 📂templates
  ┃ ┃ ┣ clustering_examples.html
-
+```
 Key Points:
 - Main file imports routers from routers dir
 - css,js and assets (images etc..) imported from static
