@@ -59,8 +59,8 @@ async def post_form(request: Request,k_cluster: int = Form(...), file: UploadFil
     
     if img_array.shape[0] > 3500:
         print("Large Image - Scale down to reduce processing time")
-        img_array = resize(img_array, (img_array.shape[0] // 5, img_array .shape[1] // 5),
-                       anti_aliasing=True)
+        img_array = resize(img_array, (img_array.shape[0] // 15, img_array .shape[1] // 15),
+                        anti_aliasing=True)
 
     fig_size = resolution_matcher(img_array,dpi=50)
 
@@ -74,8 +74,8 @@ async def post_form(request: Request,k_cluster: int = Form(...), file: UploadFil
     plt.imshow(segmented_img,interpolation='nearest')
     # plt.title("new image")
 
-  
-    filepath = r"C:\Users\viraj.vaitha\repos\portfolio\figures\segmented_image_{0}.jpg".format(k_cluster)
+ 
+    filepath = r"C:\Users\Viraj\Repos\portfolio\app\figures\segmented_image_{0}.jpg".format(k_cluster)
     plt.savefig(filepath,  dpi=100)
 
     # seg_image = Image.open(filepath)
