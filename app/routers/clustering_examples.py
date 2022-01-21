@@ -3,13 +3,24 @@ routing code for clustering_examples usecase in our FastAPI webservice.
 
 Storing seperate GET/POST request in routers to better organise and prevent clutter in the main.py file.
 """
-from helpers.data_processing.img_utils import bytes_to_numpy_array, resolution_matcher
-from helpers.data_processing.azure_blob_wrapper import upload_blob
-from helpers.machine_learning.image_segmentation import cluster_image
+import sys
+import os 
+from pathlib import Path
+
+current_file = Path(__file__)
+current_file_dir = current_file.parent
+project_root = current_file_dir.parent
+template_root_absolute = os.path.join(project_root,"templates")
+static_root_absolute = os.path.join(project_root,"static")
+
+
+from app.helpers.data_processing.img_utils import bytes_to_numpy_array, resolution_matcher
+from app.helpers.data_processing.azure_blob_wrapper import upload_blob
+from app.helpers.machine_learning.image_segmentation import cluster_image
 import matplotlib.pyplot as plt
 from skimage import data, color
 from skimage.transform import rescale, resize, downscale_local_mean
-import os
+
 
 from fastapi import APIRouter
 from fastapi import Request, File, Form,UploadFile
@@ -38,9 +49,8 @@ router = APIRouter(
 )
 
 
-templates = Jinja2Templates(directory="templates")
-router.mount("/static", StaticFiles(directory="static"), name = "static")
-
+templates = Jinja2Templates(directory=template_root_absolute)
+router.mount("/static", StaticFiles(directory=static_root_absolute), name = "static")
 
 @router.get('/', response_class=HTMLResponse)
 async def get_form(request: Request):
@@ -74,14 +84,14 @@ async def post_form(request: Request,k_cluster: int = Form(...), file: UploadFil
     plt.imshow(segmented_img,interpolation='nearest')
     # plt.title("new image")
 
-  
-    filepath = r"C:\Users\viraj.vaitha\repos\portfolio\figures\segmented_image_{0}.jpg".format(k_cluster)
+    figures_root_absolute = os.path.join(project_root,"figures")
+    filepath = os.path.join(figures_root_absolute,"segmented_image_{0}.jpg".format(k_cluster))
     plt.savefig(filepath,  dpi=100)
 
     # seg_image = Image.open(filepath)
 
     filename = file.filename
-    upload_blob(filename,"public",filepath)
+    # upload_blob(filename,"public",filepath)
     # return FileResponse(path=filepath, filename=filename, media_type='image/jpg')
     return FileResponse(path=filepath, filename=filename, media_type='image/jpg')
     return templates.TemplateResponse(r"clustering_examples.html",
