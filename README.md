@@ -23,11 +23,12 @@ The main purpose of this project is to demonstrate the following concepts:
 3. Frontend
 - I'm not a frontend developer- however this project allowed me to use templates from online, alter them and learn the basics of html,css and javascript.
 
-This solution is great when your client/customer requires your service to be accessed from a website. FastAPI should be used for microservices (most commonly without the user interface) and For full scale web applications Django is preferred. 
+This solution is great when your client/customer requires your service to be accessed from a website. FastAPI should be used for microservices (most commonly without the user interface) and for full scale web applications Django is preferred. 
 
 This application uses KMeans clustering on image data and propogates the centroid RGB value to all other pixels that are within the same cluster.
 
 <br>
+
 ### Other benefits
 
 This project is an opportunity to experiment with a full stack project. We have the opportunity to download static files for the frontend (HTML, CSS and Javascript and customized to our liking) and backend (FastAPI). In addition, using Azure (Azure Blob Storage, Secrets, Azure App service ect..) and packaging an application that be packaged with Docker/Kubernetes. 
