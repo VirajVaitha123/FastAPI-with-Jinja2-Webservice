@@ -1,7 +1,11 @@
 # Portfolio
 
 ### Introduction
-Webservice created using FastAPI (with Jinga2 Templates). 
+Webservice created using FastAPI (with Jinga2 Templates). Below is a gif to showcase the service.
+
+
+![gif-summary](https://github.com/VirajVaitha123/portfolio/blob/app/images_gifs/Animation.gif)
+<br>
 
 The main purpose of this project is to demonstrate the following concepts:
 1. FastAPI + Jinja2 templates
@@ -24,10 +28,6 @@ This solution is great when your client/customer requires your service to be acc
 This application uses KMeans clustering on image data and propogates the centroid RGB value to all other pixels that are within the same cluster.
 
 <br>
-
-![gif-summary](https://github.com/VirajVaitha123/portfolio/blob/app/images_gifs/Animation.gif)
-<br>
-
 ### Other benefits
 
 This project is an opportunity to experiment with a full stack project. We have the opportunity to download static files for the frontend (HTML, CSS and Javascript and customized to our liking) and backend (FastAPI). In addition, using Azure (Azure Blob Storage, Secrets, Azure App service ect..) and packaging an application that be packaged with Docker/Kubernetes. 
