@@ -15,7 +15,7 @@ static_root_absolute = os.path.join(project_root,"static")
 
 
 from app.helpers.data_processing.img_utils import bytes_to_numpy_array, resolution_matcher
-from app.helpers.data_processing.azure_blob_wrapper import upload_blob
+# from app.helpers.data_processing.azure_blob_wrapper import upload_blob
 from app.helpers.machine_learning.image_segmentation import cluster_image
 import matplotlib.pyplot as plt
 from skimage import data, color
