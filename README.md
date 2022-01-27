@@ -8,6 +8,7 @@ Webservice created using FastAPI (with Jinga2 Templates). Below is a gif to show
 <br>
 
 The main purpose of this project is to demonstrate the following concepts:
+
 <b> 1. FastAPI + Jinja2 templates </b>
 - FastAPI folder structure (router for larger project)
 - Render HTML page (jinga2 templates and mounting static files)
