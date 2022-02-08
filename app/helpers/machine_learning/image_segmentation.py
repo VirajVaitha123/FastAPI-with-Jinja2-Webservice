@@ -8,8 +8,14 @@ Contains unsupervised learning functions to enable image_segmentation.
 import sklearn
 from sklearn.cluster import KMeans
 import numpy as np
+from skimage.color import rgba2rgb
+from skimage import data
+
 
 def cluster_image(n_clusters:int ,input_array: np.array) -> np.array:
+    if input_array.shape[2] == 4:
+        input_array = rgba2rgb(input_array)
+
     X = input_array.reshape(-1, 3)
 
     # training kmeans model

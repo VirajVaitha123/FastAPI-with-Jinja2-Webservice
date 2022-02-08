@@ -6,7 +6,7 @@ services:
     context: .                 # searches in this directory
     dockerfile: dockerfile     # where the dockerfile name is = dockerfile 
   image: fastapi
-  # volumes:                     # bind mount: view live edits when changing the html template (Not working for entire app yet)
+  # volumes:                   # bind mount: view live edits when changing the html template (Not working for entire app yet)
   #  - ./app:/code/app            
   ports:
       - '82:80'                #expose these ports

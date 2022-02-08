@@ -1,20 +1,16 @@
 """
-application entry point:
- - Initiates FastAPI server 
- - Connects to static files and templates directory (Jinga2)
- - Includes all API end points from router directory
- - hello_world placeholder for landing page
+ Author: Viraj Vaitha
+ Description: main file
+ - Imports routers to keep main file tidy
+ - description for docs
+ - setting paths using os so solutions works locally as well as in a docker image
+ - Mounting templates and static files to render html pages correctly
 """
 
-# Author: Viraj Vaitha
 
 ## TO DO: Add unit tests and more try/except statements
-##      : Optimise KMeans application to run faster?
 ##      : Responsive? can't even tell it is downloading, loading bar, new page or spinner atleast!
 ##      : Incorporate mlflow to your solution to store an artifact demonstrating performance (time) for each function
-##      : Add an simple architecture diagram to demonstrate libaries,softwares and cloud services used for the solution.
-##      : GIF instead of phone on the right showcasing application
-##      : Create docker image
 
 # Import Libaries
 import sys
@@ -34,17 +30,48 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 
 
-from app.routers import clustering_examples
+from app.routers import machine_learning_gallery
 import matplotlib.pyplot as plt
+
+description = """
+Machine Learning gallery provides a variety of different examples of machine learning applications. 
+
+## Unsupervised Learning
+
+KMeans clustering for **image segmentation**.
+
+"""
+
+
+# Descriptions (optional) - adds name and description in docs
+tags_metadata = [
+    {
+        "name": "machine_learning_gallery",
+        "description": "APIs to showcase unsupervised learning applications",
+    }
+]
 
 
 # Initiate your FastAPI application
-app = FastAPI()
+app = FastAPI(title="Machine Learning Gallery",
+              description=description,
+              version="0.0.1",
+            #   terms_of_service="http://example.com/terms/",
+              contact={
+                        "name": "Viraj Vaitha",
+                        # "url": "",
+                        "email": "virajvaitha1995@gmail.com",
+                    },
+            #   license_info={
+                            # "name": "Apache 2.0",
+                            # "url": "https://www.apache.org/licenses/LICENSE-2.0.html",}
+                            )
 
-app.include_router(clustering_examples.router)
+# Import gallery service
+app.include_router(machine_learning_gallery.router)
 
 
-# HTML Rendering and static filesfa
+# HTML Rendering and static files
 templates = Jinja2Templates(directory=template_root_absolute)
 app.mount("/static", StaticFiles(directory=static_root_absolute), name = "static")
 

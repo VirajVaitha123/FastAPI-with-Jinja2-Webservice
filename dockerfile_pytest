@@ -5,6 +5,10 @@ WORKDIR /code
 
 # copies requirements.txt locally to code/ in docker container
 COPY ./requirements.txt /code/requirements.txt
+
+COPY ./test_resources /code/test_resources
+
+COPY ./tests /code/tests
  
 # pip installs requirements.txt (uses full path) and --no-cache-dir helps keep size of docker image small since we don't need to cache here
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
@@ -13,4 +17,4 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 COPY ./app /code/app
 
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["pytest", "tests"]

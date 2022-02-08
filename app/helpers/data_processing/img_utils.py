@@ -7,6 +7,7 @@ Functions to help work with Azure Blob Storage
 from io import BytesIO
 from PIL import Image
 import numpy as np
+import os
 
 
 # 1. Convert bytes data to a NumPy array
@@ -26,6 +27,23 @@ def bytes_to_numpy_array(data_obj, scale:bool = True)-> np.ndarray:
     else:
         image = np.array(Image.open(BytesIO(data_obj)))
         return image
+
+def np_array_to_pil_img(array,home_dir,img_dir_name):
+    image_dir = os.path.join(home_dir,img_dir_name)
+    filepath = os.path.join(image_dir,"output_image")
+
+    if np.amax(array) <= 1:
+         # Convert to PIL Image and save locally
+          im = Image.fromarray((array * 255).astype(np.uint8))
+          im.save(filepath)
+          print("Image saved in " + str(filepath))
+          return str(filepath)
+    else:
+         im = Image.fromarray(array)
+         im.save(filepath)
+         print("Image saved in " + str(filepath))
+         return str(filepath)
+
 
 # 2. Ensure output resolution matches input resolution
 def resolution_matcher(image_array:np.array, dpi:int = 100) -> tuple:

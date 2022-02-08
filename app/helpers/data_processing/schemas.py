@@ -1,4 +1,5 @@
 from fastapi import Form, File, UploadFile
+from enum import Enum
 from pydantic import BaseModel
 
 
@@ -17,7 +18,6 @@ This can prevents large blocks of code when working with large input forms.
 
 class SegmentationForm(BaseModel):
     k_cluster: int
-   
     file: UploadFile
 
     @classmethod
@@ -30,3 +30,10 @@ class SegmentationForm(BaseModel):
             k_cluster = k_cluster,
             file=file
         )
+
+
+# Only allow parameter with specific names (dropdown)
+class ModelName(str, Enum):
+    KMeans = "alexnet"
+    GMM = "resnet"
+ 
