@@ -45,7 +45,7 @@ From my research the ideal structure for a FastAPI application can be seen below
  ┣ 📂routers 
  ┃ ┣ 📜clustering_examples.py   #API routes - keeps main.py clean
  ┣ 📂helpers
- ┃  ┣ 📂 data_processing.py   #API routes - keeps main.py clean
+ ┃  ┣ 📂 data_processing.py   
  ┃  ┃  ┣  📜azure_blob_wrapper.py
  ┃  ┃  ┣  📜img_utils.py
  ┃  ┃  ┗  📜schemas.py
